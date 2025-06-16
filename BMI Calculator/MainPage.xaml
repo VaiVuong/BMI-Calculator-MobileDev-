@@ -68,7 +68,6 @@
                    HorizontalOptions="Center"
                    FontSize="16" />
 
-            <Label Text="Your BMI:" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,0" />
             <Label x:Name="BMIResultLabel" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" TextColor="Green" />
             <Label x:Name="BMIStatusLabel" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" />
 

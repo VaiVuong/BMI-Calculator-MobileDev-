@@ -44,7 +44,7 @@ namespace BMICalculator
         }
 
 
-        private async void OnCalculateClicked(object sender, EventArgs e)//button click logic
+        private async void OnCalculateClicked(object sender, EventArgs e)
         {
             double weight = WeightSlider.Value;
             double height = HeightSlider.Value;
@@ -55,71 +55,8 @@ namespace BMICalculator
                 return;
             }
 
-            double bmi = (weight * 703) / (height * height);
-            BMIResultLabel.Text = $"{bmi:F2}";
-
-            string status = string.Empty;
-            string recommendations = string.Empty;
-
-            if (_selectedGender == "Male") //male specific bmi logic
-            {
-                if (bmi < 18.5)
-                {
-                    status = "Underweight";
-                    recommendations = "Increase calorie intake with nutrient-rich foods (e.g., nuts, lean protein, whole grains). Incorporate strength training to build muscle mass. Consult a nutritionist if needed.";
-                    BMIStatusLabel.TextColor = Colors.Orange;
-                }
-                else if (bmi < 25)
-                {
-                    status = "Normal Weight";
-                    recommendations = "Maintain a balanced diet with proteins, healthy fats, and fiber. Stay physically active with at least 150 minutes of exercise per week. Keep regular check-ups to monitor overall health.";
-                    BMIStatusLabel.TextColor = Colors.Green;
-                }
-                else if (bmi < 30)
-                {
-                    status = "Overweight";
-                    recommendations = "Reduce processed foods and focus on portion control. Engage in regular aerobic exercises (e.g., jogging, swimming) and strength training. Drink plenty of water and track your progress.";
-                    BMIStatusLabel.TextColor = Colors.OrangeRed;
-                }
-                else
-                {
-                    status = "Obese";
-                    recommendations = "Consult a doctor for personalized guidance. Start with low-impact exercises (e.g., walking, cycling). Follow a structured weight-loss meal plan and consider behavioral therapy for lifestyle changes. Avoid sugary drinks and maintain a consistent sleep schedule.";
-                    BMIStatusLabel.TextColor = Colors.Red;
-                }
-            }
-            else // Female specific bmi logic
-            {
-                if (bmi < 18)
-                {
-                    status = "Underweight";
-                    recommendations = "Increase calorie intake with nutrient-rich foods (e.g., nuts, lean protein, whole grains). Incorporate strength training to build muscle mass. Consult a nutritionist if needed.";
-                    BMIStatusLabel.TextColor = Colors.Orange;
-                }
-                else if (bmi < 24)
-                {
-                    status = "Normal Weight";
-                    recommendations = "Maintain a balanced diet with proteins, healthy fats, and fiber. Stay physically active with at least 150 minutes of exercise per week. Keep regular check-ups to monitor overall health.";
-                    BMIStatusLabel.TextColor = Colors.Green;
-                }
-                else if (bmi < 29)
-                {
-                    status = "Overweight";
-                    recommendations = "Reduce processed foods and focus on portion control. Engage in regular aerobic exercises (e.g., jogging, swimming) and strength training. Drink plenty of water and track your progress.";
-                    BMIStatusLabel.TextColor = Colors.OrangeRed;
-                }
-                else
-                {
-                    status = "Obese";
-                    recommendations = "Consult a doctor for personalized guidance. Start with low-impact exercises (e.g., walking, cycling). Follow a structured weight-loss meal plan and consider behavioral therapy for lifestyle changes. Avoid sugary drinks and maintain a consistent sleep schedule.";
-                    BMIStatusLabel.TextColor = Colors.Red;
-                }
-            }
-
-            BMIStatusLabel.Text = status;
-
-            // 🔔 Display the popup message
-            await DisplayAlert("Health Recommendation", recommendations, "OK");
+            // To BMIResultsPage with parameters
+            await Navigation.PushAsync(new BMIResultsPage(weight, height, _selectedGender));
         }
     }
 }
